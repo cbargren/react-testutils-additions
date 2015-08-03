@@ -4,6 +4,18 @@ var ReactTestUtils = React.addons.TestUtils;
 
 var RTA = ReactTestUtils;
 
+var origninalRenderIntoDocument = RTA.renderIntoDocument;
+RTA.renderIntoDocument = function(instance) {
+	
+	var TestContainer = React.createClass({
+		render: function() {
+			return React.createElement('div', { id: "testcontainer" }, instance);
+		}
+	});
+
+	return origninalRenderIntoDocument(React.createElement(TestContainer));
+};
+
 RTA.find = function(root, selector){
 	var segments = selector.split(" ");
 
@@ -72,6 +84,10 @@ RTA.findRenderedDOMComponentWithId = function(root, propValue) {
     }
     return all[0];
 };
+
+// RTA.updateProp = function() {
+
+// };
 
 RTA.unMountFromDocument = function(root){
 	React.unmountComponentAtNode(React.findDOMNode(root).parentNode);

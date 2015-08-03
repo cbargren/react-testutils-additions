@@ -61,7 +61,7 @@ describe("react-testutils-additions tests", function(){
 			expect(result.length).toBe(1);
 		})	
 	});
-		
+	
 	it("it should be able to find components with a class selector", function(){
 		var Component = React.createClass({
 			render: function(){ return (<div className="myclass"></div>); }
@@ -230,5 +230,28 @@ describe("react-testutils-additions tests", function(){
 		};
 
 		expect(findAction).toThrow();
-	});	
+	});
+
+	// describe("Prop helpers", function(){
+
+	// 	var propUpdated = jasmine.createSpy();
+
+	// 	iit("it should be able to update the props of a component", function(){
+	// 		var Component = React.createClass({
+	// 			getInitialProps: function() {
+	// 				return { myprop: "initial" };
+	// 			},
+	// 			componentWillReceiveProps: function(nextProps) {
+	// 				propUpdated();
+	// 			},
+	// 			render: function(){ return (<div id="findme"></div>); }
+	// 		});
+
+	// 		var doc = TestUtils.renderIntoDocument(<Component />);
+			
+	// 		TestUtils.updateProp(doc, { myprop: "update" });
+
+	// 		expect(propUpdated).toHaveBeenCalled();
+	// 	});
+	// });
 });
