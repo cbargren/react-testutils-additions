@@ -16,7 +16,7 @@ RTA.renderIntoDocument = function(instance) {
 			this.wrappedProps = instance.props;
 		},
 		render: function() {
-			var clonedInstance = React.addons.cloneWithProps(instance, this.wrappedProps);
+			var clonedInstance = React.cloneElement(instance, this.wrappedProps);
 
 			return React.createElement('div', { id: "testcontainer" }, clonedInstance);
 		}
