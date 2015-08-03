@@ -8,8 +8,17 @@ var origninalRenderIntoDocument = RTA.renderIntoDocument;
 RTA.renderIntoDocument = function(instance) {
 	
 	var TestContainer = React.createClass({
+		updateProp: function(props) {
+			this.customProps = props;
+			this.forceUpdate();
+		},
+		componentWillMount: function() {
+			this.customProps = instance.props;
+		},
 		render: function() {
-			return React.createElement('div', { id: "testcontainer" }, instance);
+			var clone = React.addons.cloneWithProps(instance, this.customProps);
+
+			return React.createElement('div', { id: "testcontainer" }, clone);
 		}
 	});
 
@@ -84,10 +93,6 @@ RTA.findRenderedDOMComponentWithId = function(root, propValue) {
     }
     return all[0];
 };
-
-// RTA.updateProp = function() {
-
-// };
 
 RTA.unMountFromDocument = function(root){
 	React.unmountComponentAtNode(React.findDOMNode(root).parentNode);

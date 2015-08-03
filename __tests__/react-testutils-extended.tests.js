@@ -232,26 +232,26 @@ describe("react-testutils-additions tests", function(){
 		expect(findAction).toThrow();
 	});
 
-	// describe("Prop helpers", function(){
+	describe("Prop helpers", function(){
 
-	// 	var propUpdated = jasmine.createSpy();
+		var propUpdated = jasmine.createSpy();
 
-	// 	iit("it should be able to update the props of a component", function(){
-	// 		var Component = React.createClass({
-	// 			getInitialProps: function() {
-	// 				return { myprop: "initial" };
-	// 			},
-	// 			componentWillReceiveProps: function(nextProps) {
-	// 				propUpdated();
-	// 			},
-	// 			render: function(){ return (<div id="findme"></div>); }
-	// 		});
+		iit("it should be able to update the props of a component", function(){
+			var Component = React.createClass({
+				getInitialProps: function() {
+					return { myprop: "initial" };
+				},
+				componentWillReceiveProps: function(nextProps) {
+					propUpdated();
+				},
+				render: function(){ return (<div id="findme"></div>); }
+			});
 
-	// 		var doc = TestUtils.renderIntoDocument(<Component />);
+			var doc = TestUtils.renderIntoDocument(<Component />);
 			
-	// 		TestUtils.updateProp(doc, { myprop: "update" });
+			doc.updateProp({ myprop: "update" });
 
-	// 		expect(propUpdated).toHaveBeenCalled();
-	// 	});
-	// });
+			expect(propUpdated).toHaveBeenCalled();
+		});
+	});
 });
