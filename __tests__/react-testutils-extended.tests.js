@@ -234,14 +234,12 @@ describe("react-testutils-additions tests", function(){
 
 	describe("Prop helpers", function(){
 
-		var propUpdated = jasmine.createSpy();
+		var propUpdated = jasmine.createSpy(), updatedProps = {};
 
-		iit("it should be able to update the props of a component", function(){
+		it("it should be able to update the props of a component", function(){
 			var Component = React.createClass({
-				getInitialProps: function() {
-					return { myprop: "initial" };
-				},
 				componentWillReceiveProps: function(nextProps) {
+					updatedProps = nextProps;
 					propUpdated();
 				},
 				render: function(){ return (<div id="findme"></div>); }
@@ -252,6 +250,7 @@ describe("react-testutils-additions tests", function(){
 			doc.updateProp({ myprop: "update" });
 
 			expect(propUpdated).toHaveBeenCalled();
+			expect(updatedProps.myprop).toBe("update");
 		});
 	});
 });

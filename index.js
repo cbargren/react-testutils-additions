@@ -3,22 +3,22 @@ var React = require("react/addons");
 var ReactTestUtils = React.addons.TestUtils;
 
 var RTA = ReactTestUtils;
-
 var origninalRenderIntoDocument = RTA.renderIntoDocument;
+
 RTA.renderIntoDocument = function(instance) {
 	
 	var TestContainer = React.createClass({
 		updateProp: function(props) {
-			this.customProps = props;
+			this.wrappedProps = props;
 			this.forceUpdate();
 		},
 		componentWillMount: function() {
-			this.customProps = instance.props;
+			this.wrappedProps = instance.props;
 		},
 		render: function() {
-			var clone = React.addons.cloneWithProps(instance, this.customProps);
+			var clonedInstance = React.addons.cloneWithProps(instance, this.wrappedProps);
 
-			return React.createElement('div', { id: "testcontainer" }, clone);
+			return React.createElement('div', { id: "testcontainer" }, clonedInstance);
 		}
 	});
 
