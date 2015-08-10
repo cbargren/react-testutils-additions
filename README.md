@@ -82,7 +82,7 @@ testUtilsAdditions.findRenderedDOMComponentWithAttributeValue(component, "role" 
 
 
 ##### updateProps
-The componentWillReceiveProps function is called by the parent component, which makes it hard to test. Therefore I created the renderIntoTestContainer helper that wraps your component in a container with a updateProps function on it.
+The componentWillReceiveProps function is called by the parent component, which makes it hard to test on your own component. Therefore I created the renderIntoTestContainer helper that wraps your component in a container with an updateProps function on it.
 
 ``` Javascript
 var testUtilsAdditions = require("react-testutils-additions");
